@@ -1,6 +1,6 @@
 #include <stdio.h>
-
 int vertices;
+
 void bfs(int source, int dest, int graph[vertices][vertices])
 {
     int queue[9] = {0};
@@ -20,6 +20,7 @@ void bfs(int source, int dest, int graph[vertices][vertices])
                 top++;
                 queue[i] = 1;
                 origin[i] = tempQueue[temp];
+
                 tempQueue[top] = i;
                 if (i == dest)
                     temp = -2;
@@ -39,9 +40,9 @@ void bfs(int source, int dest, int graph[vertices][vertices])
 
 void dfs(int source, int dest, int graph[vertices][vertices])
 {
-
     int stack[9] = {0};
-    int origin[9] = {0};
+    int origin[9] = {
+        0};
     origin[source] = -1;
     stack[source] = 1;
     int tempStack[9];
@@ -53,13 +54,13 @@ void dfs(int source, int dest, int graph[vertices][vertices])
         {
             if (graph[temp][i] == 1 && stack[i] == 0)
             {
-
                 top++;
                 tempStack[top] = i;
                 stack[i] = 1;
                 origin[i] = temp;
                 if (i == dest)
                 {
+
                     top = -1;
                 }
             }
@@ -76,7 +77,7 @@ void dfs(int source, int dest, int graph[vertices][vertices])
     }
 }
 
-int main()
+void main()
 {
     printf("Enter the no of vertices : ");
     scanf("%d", &vertices);
@@ -97,7 +98,6 @@ int main()
             graph[i][data] = 1;
         }
     }
-
     bfs(0, 8, graph);
     dfs(0, 8, graph);
 }
